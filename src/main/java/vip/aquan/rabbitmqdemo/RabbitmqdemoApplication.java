@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * 3.使用RabbitMQ的rabbitmq_delayed_message_exchange插件 *
  * 搭建步骤：
- * （1）装erlang,rabbitmq,配环境变量，启动
+ * （1）装erlang,rabbitmq,配环境变量，启动。在rabbitmq官网下载即可，注意看对应erlang版本的问题。
  * （2）装延时队列插件https://github.com/rabbitmq/rabbitmq-delayed-message-exchange ，把下载后的ez文件放rabbitmq/plugins下
  * （3）执行命令 rabbitmq-server -detached （防止启用插件报错）
  * （4）执行命令 rabbitmq-plugins enable rabbitmq_delayed_message_exchange （启用插件）
