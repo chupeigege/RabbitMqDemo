@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import vip.aquan.rabbitmqdemo.util.MqConstants;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 
 /**
@@ -23,7 +24,7 @@ public class OrderTimeOutHandler {
     @RabbitHandler
     public void process(String content, Channel channel, Message message) {
         try {
-            System.out.println("订单超时的用户信息："+content);
+            System.out.println(LocalDateTime.now().toString() + ": 订单超时的用户信息："+content);
         }finally {
             try {
                 //手动确认

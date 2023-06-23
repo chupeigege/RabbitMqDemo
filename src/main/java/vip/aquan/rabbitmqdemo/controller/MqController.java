@@ -8,6 +8,8 @@ import vip.aquan.rabbitmqdemo.pojo.User;
 import vip.aquan.rabbitmqdemo.service.mq.MqService;
 import vip.aquan.rabbitmqdemo.util.MqConstants;
 
+import java.time.LocalDateTime;
+
 @RestController
 public class MqController {
 
@@ -23,7 +25,7 @@ public class MqController {
         //释放时间，发送延时队列
         int releaseTime = 10 * 1000;
         mqService.sendDelay(MqConstants.DELAY_ORDER_TIMEOUT, JSON.toJSONString(user), releaseTime);
-        System.out.println("发送延时队列成功");
+        System.out.println(LocalDateTime.now().toString() + "：发送延时队列成功");
         return "ok";
     }
 }
