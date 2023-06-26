@@ -34,6 +34,23 @@ public class QueueConfig {
     }
 
     @Bean
+    public Queue topicQueue() {
+        //主题队列
+        return new Queue(MqConstants.TOPIC_QUEUE,true,false,false);
+    }
+
+    @Bean
+    public TopicExchange topicExchange() {
+        //主题交换机
+        return new TopicExchange(MqConstants.TOPIC_EXCHANGE, true, false);
+    }
+
+    @Bean
+    public Binding topicQueueBinding() {
+        return BindingBuilder.bind(topicQueue()).to(topicExchange()).with("*.error");
+    }
+
+    @Bean
     public Queue deadQueue(){
         //死信队列
         return new Queue(MqConstants.DEFAULT_REPEAT_TRADE_QUEUE_NAME,true,false,false);

@@ -9,6 +9,13 @@ public interface MqService {
     void send(String queueName, Object msg);
 
     /**
+     * 根据RoutingKey发送
+     * @param key
+     * @param msg
+     */
+    void sendByRoutingKey(String key, Object msg);
+
+    /**
      * 延时发送
      * @param queueName 队列名称
      * @param msg 消息

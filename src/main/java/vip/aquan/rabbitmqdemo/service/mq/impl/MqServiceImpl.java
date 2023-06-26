@@ -32,6 +32,13 @@ public class MqServiceImpl implements MqService {
     }
 
     @Override
+    public void sendByRoutingKey(String routingKey, Object msg) {
+        String msgId = SnowFlakeUtil.createSnowflakeId().toString();
+        logger.info("sendByRoutingKey msg，routingKey：{}，消息： {}，CorrelationData：{}",routingKey,msg,msgId);
+        this.rabbitTemplate.convertAndSend(MqConstants.TOPIC_EXCHANGE ,routingKey, msg, new CorrelationData(msgId));
+    }
+
+    @Override
     public void sendDelay(String queueName, String msg, Integer times) {
         DLXMessage dlxMessage = new DLXMessage(queueName,msg,times);
         MessagePostProcessor processor = (message)->{
